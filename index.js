@@ -22,7 +22,7 @@ app.listen(app.get('port'), () =>{
 	console.log(`Server on port ${app.get('port')}`);
 });
 
-
+//metodo GET encargado en consultar todos los registros de la base de datos
 app.get('/webapi/async',asyncHandler(async (req,res,next) => {
 	const f = await Interruptor.find({}, (err) => {
 		if(err) throw (err); 
@@ -30,6 +30,7 @@ app.get('/webapi/async',asyncHandler(async (req,res,next) => {
 	res.json(f);
 }));
 
+//metodo GET encargado de consultar los registros por el atributo "Lado"
 app.get('/webapi/async/:Lado',asyncHandler(async (req,res,next) => {
 	var Lado = req.params.Lado;
 	const l = await Interruptor.find({Lado}, (err) => {
@@ -38,6 +39,7 @@ app.get('/webapi/async/:Lado',asyncHandler(async (req,res,next) => {
 	res.json(l);
 }));
 
+//metodo POST encargado de insertar nuevos registros a la base de datos
 app.post('/webapi/async',asyncHandler(async (req,res,next) => {
 	console.log('Post /webapi/interrupt');
 	console.log(req.body);
